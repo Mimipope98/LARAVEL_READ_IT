@@ -1,4 +1,4 @@
-@extends('template.index');
+@extends('template.index')
  
 @section('title')
 Readit - Free Bootstrap 4 Template by Colorlib
@@ -13,7 +13,11 @@ Readit - Free Bootstrap 4 Template by Colorlib
            
       <div class="col-md-6 d-flex ftco-animate">
           <div class="blog-entry justify-content-end">
-          <a href="article.html" class="block-20" style="background-image: url('{{ asset ('assets/images/' . $post->image)}}');">
+          <a href="{{ route('posts.show', [
+            'post' =>$post->id,
+            'slug' => \Illuminate\Support\Str::slug($post->title)]) 
+            }}" >
+          <div class="block-20" style="background-image: url('{{ asset ('assets/images/' . $post->image)}}');"></div>
           </a>
           <div class="text p-4 float-right d-block">
               <div class="topper d-flex align-items-center">
@@ -30,7 +34,7 @@ Readit - Free Bootstrap 4 Template by Colorlib
             <p><a href="article.html" class="btn-custom"><span class="ion-ios-arrow-round-forward mr-3"></span>Read more</a></p>
           </div>
         </div>
-        </div>
+      </div>
         @endforeach
     </div>
     <div class="row mt-5">
@@ -43,5 +47,5 @@ Readit - Free Bootstrap 4 Template by Colorlib
       </div>
     </div>
   </div>
-</div>
+
 @stop
