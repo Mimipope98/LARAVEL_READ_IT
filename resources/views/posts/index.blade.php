@@ -6,7 +6,6 @@ Readit - Free Bootstrap 4 Template by Colorlib
 
 @section('content')
 
-
 <div class="container">
     <div class="row d-flex">
       @foreach($posts as $post)
@@ -26,12 +25,18 @@ Readit - Free Bootstrap 4 Template by Colorlib
                   </div>
                   <div class="two pl-0 pr-3 py-2 align-self-stretch">
                       <span class="yr">{{$post->created_at->format('Y')}}</span>
-                      <span class="mos">{{$post->created_at->format('m')}}</span>
+                      <span class="mos">{{$post->created_at->format('M')}}</span>
                   </div>
               </div>
-              <h3 class="heading mb-3"><a href="#">{{ $post->titre }}</a></h3>
+              <h3 class="heading mb-3"><a href="{{ route('posts.show', [
+                'post' =>$post->id,
+                'slug' => \Illuminate\Support\Str::slug($post->title)]) 
+                }}"">{{ $post->titre }}</a></h3>
             <p>{{$post->resume}}</p>
-            <p><a href="article.html" class="btn-custom"><span class="ion-ios-arrow-round-forward mr-3"></span>Read more</a></p>
+            <p><a href="{{ route('posts.show', [
+              'post' =>$post->id,
+              'slug' => \Illuminate\Support\Str::slug($post->title)]) 
+              }}"" class="btn-custom"><span class="ion-ios-arrow-round-forward mr-3"></span>Read more</a></p>
           </div>
         </div>
       </div>

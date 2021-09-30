@@ -22,3 +22,6 @@ Route::get('/posts', [\App\Http\Controllers\PostsController::class, 'index'])
 
 Route::get('/posts/{post}/{slug}', [\App\Http\Controllers\PostsController::class, 'show'])
     ->name('posts.show');
+
+Route::get('/tags/{tag}/{slug}', [\App\Http\Controllers\PostsController::class, 'index'])
+    ->name('tags.index');
