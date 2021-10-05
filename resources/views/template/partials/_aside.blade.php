@@ -9,49 +9,17 @@
       </form>
     </div>
     <div class="sidebar-box ftco-animate">
-      <div class="categories">
-        <h3>Categories</h3>
-        <li><a href="#">Illustration <span class="ion-ios-arrow-forward"></span></a></li>
-        <li><a href="#">Branding <span class="ion-ios-arrow-forward"></span></a></li>
-        <li><a href="#">Application <span class="ion-ios-arrow-forward"></span></a></li>
-        <li><a href="#">Design <span class="ion-ios-arrow-forward"></span></a></li>
-        <li><a href="#">Marketing <span class="ion-ios-arrow-forward"></span></a></li>
-      </div>
+      @include('categories._index', [ 
+        'categories' => App\Models\Categorie::orderBy('name', 'ASC')->get()
+       ])
     </div>
 
     <div class="sidebar-box ftco-animate">
-      <h3>Recent Blog</h3>
-      <div class="block-21 mb-4 d-flex">
-        <a class="blog-img mr-4" style="background-image: url({{ asset('assets/images/image_1.jpg') }});"></a>
-        <div class="text">
-          <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-          <div class="meta">
-            <div><a href="#"><span class="icon-calendar"></span> Nov. 14, 2019</a></div>
-            <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-            <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-          </div>
-        </div>
-      </div>
-      <div class="block-21 mb-4 d-flex">
-        <a class="blog-img mr-4" style="background-image: url({{ asset('assets/images/image_2.jpg') }});"></a>
-        <div class="text">
-          <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-          <div class="meta">
-            <div><a href="#"><span class="icon-calendar"></span> Nov. 14, 2019</a></div>
-            <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-            <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-          </div>
-        </div>
-      </div>
-      <div class="block-21 mb-4 d-flex">
-        <a class="blog-img mr-4" style="background-image: url({{ asset('assets/images/image_3.jpg') }});"></a>
-        <div class="text">
-          <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-          <div class="meta">
-            <div><a href="#"><span class="icon-calendar"></span> Nov. 14, 2019</a></div>
-            <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-            <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-          </div>
-        </div>
-      </div>
+      @include('posts._recent', [
+        'posts' => App\Models\Post::orderBy('created_at','DESC')->take(3)->get()
+      ])
+     
+    
+    <div class="sidebar-box ftco-animate">
+     @include('tags._index', ['tags'=> $post->tags])
     </div>
